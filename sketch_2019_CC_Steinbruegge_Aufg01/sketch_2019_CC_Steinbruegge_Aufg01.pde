@@ -16,9 +16,10 @@ float angleConverted;
 float angleAnimation;
 float randomAngle;
 
-int [][] angles;
+float [][] angles;
 
 int i;
+int test;
 float a;
 
 int time = 100;
@@ -39,12 +40,14 @@ void setup(){
   rows = h/scl;
   columns = w/scl;
   
+  stroke(255,255,255,30);
+  
  // println(rows);
  // println(columns);
   
   timer = time;
   
-  angles = new int [w/10][h/10];
+  angles = new float [w/10][h/10];
   randomAngles();
 }
 
@@ -62,7 +65,7 @@ void draw (){
   for (int x = scl; x <= w; x += scl){
     for (int y = scl; y <= h; y += scl){
       
-      angleAnimation = (int)(angles [x/10][y/10] + i);
+      angleAnimation = angles [x/10][y/10] + (cos(randomAngle))*100 + a;
       angleConverted = radians(angleAnimation);
       
       lineX = x + (radius * cos(angleConverted));
@@ -70,16 +73,18 @@ void draw (){
       
       line(x,y, lineX, lineY);
       
-      println(angles [x/10][y/10]);
+      println(cos(randomAngle));
     }
   }
   
-  //angleAnimation += cos(randomAngle) + a;
+  angleAnimation += cos(randomAngle) + a;
   i++;
+  
+  //test = (int)(i + cos(randomAngle) + a);
   
   if(timer() == 1){
      timer = time;
-     a = random(0, 0.9);
+     a = random(0, 360);
    }
    
    //println(i);
