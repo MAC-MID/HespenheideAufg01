@@ -1,57 +1,63 @@
-//2019, Creative Coding, Aufg01 – Marie Steinbrügge
+int columns;
+int rows; 
+
+int scl = 100;
+int w = 660;
+int h = 480;
 
 float lineX;
 float lineY;
 
-int r = 30;
+int radius = (scl/2)/2;
 
-float angle;
-float angle2;
-float angle3;
+float angleConverted; 
+float angleAnimation;
+float randomAngle;
 
-int i = 0;
+int [][] angles;
 
+int i;
 float a;
+
 int time = 100;
 int timer;
-
 
 void setup(){
   size(700,520);
   frameRate(60); 
   
-  frameRate(60); 
+  rows = h/scl;
+  columns = w/scl;
   
-  background(0,0,0);
-  stroke(255,255,0,20);
+  println(rows);
+  println(columns);
   
   timer = time;
 }
+
 
 int timer(){
    timer--;
    return timer;
 }
 
+
 void draw (){
-  //background(255,255,255);
-  stroke(255,255,0,20);
   
-  angle = radians(angle3);
-  angle2 = radians(i);
+  angleConverted = radians(angleAnimation);
+  randomAngle = radians(i);
   
-  for (int x = 70; x <= 630; x += 70){
-    for (int y = 70; y <= 430; y += 70){
-      
-      lineX = x + (r * cos(angle));
-      lineY = y + (r * sin(angle));
+  for (int x = scl; x <= w; x += scl){
+    for (int y = scl; y <= h; y += scl){
+
+      lineX = x + (radius * cos(angleConverted));
+      lineY = y + (radius * sin(angleConverted));
       
       line(x,y, lineX, lineY);
-
     }
   }
   
-  angle3 += cos(angle2)+a;
+  angleAnimation += cos(randomAngle)+a;
   
   i++;
   
@@ -60,5 +66,5 @@ void draw (){
      a = random(0, 0.9);
    }
    
-   println(a);
-}
+   //println(i);
+} 
