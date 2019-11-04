@@ -28,6 +28,8 @@ int b = 255;
 
 int time = 100;
 int timer;
+int timerSnap = 15*30;
+int nummer = 0;
 
 void randomAngles(){
   for (int x = 0; x < w/10; x++){
@@ -88,5 +90,14 @@ void draw (){
      g = (int)random(0, 255);
      b = (int)random(0, 255);
    }
+   
+   if (timerSnap == 0) {
+    timerSnap = 15*30;
+    println("SNAP");
+    save("test" + nummer + ".jpg"); 
+    nummer++;
+  } else {
+    timerSnap--;
+  }
    
 } 
