@@ -22,6 +22,10 @@ int i;
 int test;
 float a;
 
+int r = 255;
+int g = 255;
+int b = 255;
+
 int time = 100;
 int timer;
 
@@ -36,14 +40,10 @@ void randomAngles(){
 void setup(){
   size(700,520);
   frameRate(60); 
+  background (80,80,80);
   
   rows = h/scl;
   columns = w/scl;
-  
-  stroke(255,255,255,30);
-  
- // println(rows);
- // println(columns);
   
   timer = time;
   
@@ -71,21 +71,22 @@ void draw (){
       lineX = x + (radius * cos(angleConverted));
       lineY = y + (radius * sin(angleConverted));
       
-      line(x,y, lineX, lineY);
+      stroke(r,g,b,10);
       
-      println(cos(randomAngle));
+      line(x,y, lineX, lineY);
+
     }
   }
   
   angleAnimation += cos(randomAngle) + a;
   i++;
   
-  //test = (int)(i + cos(randomAngle) + a);
-  
   if(timer() == 1){
      timer = time;
      a = random(0, 360);
+     r = (int)random(0, 255);
+     g = (int)random(0, 255);
+     b = (int)random(0, 255);
    }
    
-   //println(i);
 } 
